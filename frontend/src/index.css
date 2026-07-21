@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900 antialiased selection:bg-green-100 selection:text-green-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}

@@ -1,0 +1,6 @@
+# Core dependencies for the Speech-to-Text subsystem.
+
+python-dotenv==1.0.1   # Load configuration/secrets from a .env file
+PyAudio==0.2.14          # Direct microphone capture (continuous, overlapping chunks)
+openai==2.45.0            # OpenAI Speech-to-Text provider (Audio Transcriptions API)
+faster-whisper==1.2.1      # Local Whisper Speech-to-Text provider (on-device, no API key)
