@@ -37,6 +37,10 @@ class Config:
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
     OPENAI_STT_MODEL: str = os.getenv("OPENAI_STT_MODEL", "whisper-1")
 
+    # Sarvam AI (src/stt/providers/sarvam_provider.py)
+    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY", "")
+    SARVAM_STT_MODEL: str = os.getenv("SARVAM_STT_MODEL", "")
+
     # Local Whisper (src/stt/providers/local_whisper_provider.py) - runs
     # entirely on-device via faster-whisper; no network calls, no API key
     # (after the model is downloaded and cached on first run).

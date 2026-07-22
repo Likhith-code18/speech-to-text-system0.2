@@ -5,7 +5,7 @@ This is the single place in the codebase that maps a provider name to a
 concrete `SpeechProvider` implementation. Adding a new provider means:
 
     1. Implement a new `SpeechProvider` subclass under `src/stt/providers/`.
-    2. Add its config fields to `config.py`.
+    2. Add its config fields to `config.py`
     3. Add one branch here.
 
 No other file changes - `SpeechProviderEngine`, `TranscriptionPipeline`,
@@ -16,6 +16,7 @@ from config import Config
 from src.stt.providers.base import SpeechProvider
 from src.stt.providers.local_whisper_provider import LocalWhisperSpeechProvider
 from src.stt.providers.openai_provider import OpenAISpeechProvider
+from src.stt.providers.sarvam_provider import SarvamSpeechProvider
 
 # Providers that are planned but not yet implemented. Kept as an explicit
 # set (rather than falling into a generic "unknown provider" error) so the
@@ -55,6 +56,17 @@ def create_speech_provider(provider_name: str, config: Config) -> SpeechProvider
         return OpenAISpeechProvider(
             api_key=config.OPENAI_API_KEY,
             model=config.OPENAI_STT_MODEL,
+            language=config.STT_LANGUAGE,
+        )
+    if normalized == "sarvam":
+        if not config.SARVAM_API_KEY:
+            raise ValueError(
+                "SARVAM_API_KEY must be set to use the 'sarvam' speech provider."
+            )
+
+        return SarvamSpeechProvider(
+            api_key=config.SARVAM_API_KEY,
+            model=config.SARVAM_STT_MODEL,
             language=config.STT_LANGUAGE,
         )
 
